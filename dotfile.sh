@@ -1,3 +1,6 @@
 #!/bin/bash
 
-git clone https://github.com/flaviareisv/dotfiles.git $HOME/dotfiles
+cd $HOME/dotfiles
+
+cp vim/.vimrc $HOME/.
+cp vim/vundles.vim $HOME/.vim
