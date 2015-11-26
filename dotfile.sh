@@ -12,11 +12,12 @@ then
     FILE_PROFILE=$HOME/.bash_profile
 fi
 
-if [ -f $FILE_PROFILE ]
+if [ -f "$FILE_PROFILE" ]
 then
-    echo "achou" #echo <<EOT [ -f "$DIR_CONFIG/profile" ] && . "$DIR_CONFIG/profile" EOT >> $FILE_PROFILE
+    echo ". $DIR_CONFIG/profile" >> $FILE_PROFILE
 else
     echo "Profile não encontrado"
+fi
 
 echo "Configurações VIM"
 
