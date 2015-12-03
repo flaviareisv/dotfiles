@@ -2,7 +2,7 @@
 
 DIR_CONFIG=$HOME/dotfiles
 
-echo "Configurações de Setup - Profile"
+echo "Configuration to Setup - Profile"
 
 if [ -f "$HOME/.profile" ]
 then
@@ -16,15 +16,29 @@ if [ -f "$FILE_PROFILE" ]
 then
     echo ". $DIR_CONFIG/profile" >> $FILE_PROFILE
 else
-    echo "Profile não encontrado"
+    echo "Profile not found"
 fi
 
-echo "Configurações VIM"
+echo "Configuration to Setup - Profile"
+
+if [ -f "$HOME/.bashrc" ]
+then
+    FILE_BASHRC=$HOME/.bashrc
+fi
+
+if [ -f "$FILE_BASHRC" ]
+then
+    echo ". $DIR_CONFIG/bashrc" >> $FILE_BASHRC
+else
+    echo "Bashrc not found"
+fi
+
+echo "Configuration VIM"
 
 cp $DIR_CONFIG/vim/.vimrc $HOME/.
 cp $DIR_CONFIG/vim/vundles.vim $HOME/.vim
 
-echo "Configurações GIT"
+echo "Configuration GIT"
 
 cp $DIR_CONFIG/git/.gitconfig $HOME/.
 
