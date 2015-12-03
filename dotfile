@@ -15,6 +15,7 @@ fi
 if [ -f "$FILE_PROFILE" ]
 then
     echo ". $DIR_CONFIG/profile" >> $FILE_PROFILE
+    echo "OK"
 else
     echo "Profile not found"
 fi
@@ -29,6 +30,7 @@ fi
 if [ -f "$FILE_BASHRC" ]
 then
     echo ". $DIR_CONFIG/bashrc" >> $FILE_BASHRC
+    echo "OK"
 else
     echo "Bashrc not found"
 fi
@@ -41,5 +43,6 @@ cp $DIR_CONFIG/vim/vundles.vim $HOME/.vim
 echo "Configuration GIT"
 
 cp $DIR_CONFIG/git/.gitconfig $HOME/.
+echo "OK"
 
 echo "Done"
