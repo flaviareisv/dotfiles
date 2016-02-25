@@ -1,8 +1,9 @@
 #!/bin/bash
 
+# Sets the configuration path
 DIR_CONFIG=$HOME/dotfiles
 
-echo "Configuration to Setup - Profile"
+echo -e "\n########## Configuration to Setup - Profile ##########\n"
 
 if [ -f "$HOME/.profile" ]
 then
@@ -12,37 +13,65 @@ then
     FILE_PROFILE=$HOME/.bash_profile
 fi
 
+echo "Profile: $FILE_PROFILE"
+
 if [ -f "$FILE_PROFILE" ]
 then
     echo ". $DIR_CONFIG/profile" >> $FILE_PROFILE
+    echo "Copy profile"
     echo "OK"
 else
     echo "Profile not found"
 fi
 
-echo "Configuration to Setup - Profile"
+echo -e "\n########## Configuration to Setup - Profile ##########\n"
 
 if [ -f "$HOME/.bashrc" ]
 then
     FILE_BASHRC=$HOME/.bashrc
 fi
 
+echo "Bashrc: $FILE_BASHRC"
+
 if [ -f "$FILE_BASHRC" ]
 then
     echo ". $DIR_CONFIG/bashrc" >> $FILE_BASHRC
+    echo "Copy bashrc"
     echo "OK"
 else
     echo "Bashrc not found"
 fi
 
-echo "Configuration VIM"
+echo -e "\n########## Configuration VIM ##########\n"
 
-cp $DIR_CONFIG/vim/.vimrc $HOME/.
-cp $DIR_CONFIG/vim/vundles.vim $HOME/.vim
+echo "Copy configuration to vim"
 
-echo "Configuration GIT"
+cp $DIR_CONFIG/vim/vimrc $HOME/.vimrc
 
-cp $DIR_CONFIG/git/.gitconfig $HOME/.
-echo "OK"
+echo "Copy OK"
 
-echo "Done"
+BIN_GIT=`which git`
+
+if [ $BIN_GIT ]
+then
+    echo "Install vundle for plugins"
+
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+    echo "Vundle Installed"
+    echo "Copying plugins for vim"
+    
+    cp $DIR_CONFIG/vim/vundles.vim $HOME/.vim/.
+
+    echo "Copy OK"
+
+    echo -e "\n########## Configuration GIT ##########\n"
+
+    cp $DIR_CONFIG/git/gitconfig $HOME/.gitconfig
+    echo "OK"
+    
+else
+    echo "You can not install plugins for vim"
+fi
+
+echo -e "\nDone"
