@@ -1,0 +1,25 @@
+{
+  "name": "dotfiles",
+  "version": "2.0.0",
+  "description": "My dotfiles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flaviareisv/dotfiles.git"
+  },
+  "author": "Flavia Reis Valverde",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flaviareisv/dotfiles/issues"
+  },
+  "homepage": "https://github.com/flaviareisv/dotfiles#readme",
+  "dependencies": {
+    "commander": "^2.13.0"
+  },
+  "devDependencies": {
+    "standard": "^10.0.3"
+  }
+}

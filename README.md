@@ -4,16 +4,17 @@
 
 + Only Linux
 + Git installed
++ NodeJS v9.3
++ NPM v5.6
 
 ## Instalation
 
 ```bash
 git clone https://github.com/flaviareisv/dotfiles.git $HOME/dotfiles
+
 cd dotfiles
-./dotfile
+
+./bin/dotfile
 ```
+
 Launch `vim` and run `:PluginInstall`
-
-## People Using Vundle
-
-see [Examples](https://github.com/VundleVim/Vundle.vim/wiki/Examples)
