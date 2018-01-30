@@ -1,14 +1,20 @@
 #!/usr/bin/env node
 
 import * as cmd from 'commander'
+import { Setup } from '../setup'
 
-cmd.version('2.0.0')
+cmd.version('{{ version }}')
 
 cmd
     .command('apply')
     .description('Apply configuration in home')
     .action(() => {
-        console.log('Iniciando')
+        const st = new Setup()
+        st.setConfigProfile()
+            .then((res) => {
+                console.log('OK')
+            })
+            .catch((err) => console.log('Ocurred an error in set configuration profile'))
     })
 
 cmd.parse(process.argv)
