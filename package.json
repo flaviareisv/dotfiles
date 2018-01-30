@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/flaviareisv/dotfiles#readme",
   "dependencies": {
+    "chalk": "^2.3.0",
     "commander": "^2.13.0"
   },
   "devDependencies": {
