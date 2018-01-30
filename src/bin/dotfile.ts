@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const cmd = require('commander')
+import * as cmd from 'commander'
 
 cmd.version('2.0.0')
 

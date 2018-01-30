@@ -4,7 +4,10 @@
   "description": "My dotfiles",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf ./dist && tsc",
+    "chmod:bin": "chmod +x dist/bin/*",
+    "watch": "tsc -w"
   },
   "repository": {
     "type": "git",
@@ -20,6 +23,10 @@
     "commander": "^2.13.0"
   },
   "devDependencies": {
-    "standard": "^10.0.3"
+    "@types/node": "^9.4.0",
+    "replace": "^0.3.0",
+    "rimraf": "^2.6.2",
+    "standard": "^10.0.3",
+    "typescript": "^2.6.2"
   }
 }
