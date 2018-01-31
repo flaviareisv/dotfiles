@@ -1,20 +1,16 @@
-import { readFile } from 'fs'
+import { readFileSync } from 'fs'
 
 export function ifStringFile(file: string, search: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
         let resSearch = false
-
-        readFile(file, (err, data) => {
-            if (err) {
-                return reject(false)
-            }
-            if (data.indexOf(search) === -1) {
-                resSearch = false
-            }
-            else {
-                resSearch = true
-            }
-        })
-        return resolve(resSearch)
+        try {
+            const occurred = readFileSync(file)
+            const res = occurred.indexOf(search)
+            if (res !== -1) resSearch = true
+            return resolve(resSearch)
+        }
+        catch(e) {
+            return reject(resSearch)
+        }
     })
 }

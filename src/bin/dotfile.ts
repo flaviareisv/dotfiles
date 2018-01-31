@@ -4,6 +4,7 @@ import * as cmd from 'commander'
 import * as chalk from 'chalk'
 import { log } from 'console'
 import { Setup } from '../setup'
+import * as ora from 'ora'
 
 cmd.version('{{ version }}')
 
@@ -12,11 +13,18 @@ cmd
     .description('Apply configuration in home')
     .action(() => {
         const st = new Setup()
+
+        log(chalk.default.bold('Starting'))
+        log()
+        log(chalk.default.yellow('Set configuration in profile...'))
+
+        const spn = ora('Set is file').start()
+
         st.setConfigProfile()
             .then((res) => {
-                log(chalk.default.green('OK'))
+                spn.succeed('Profile configuration succeed')
             })
-            .catch((err) => log(chalk.default.red('Ocurred an error in set configuration profile')))
+            .catch((err) => spn.fail('Not set profile in file'))
     })
 
 cmd.parse(process.argv)
