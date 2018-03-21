@@ -34,4 +34,11 @@ export class Setup {
 
         return true
     }
+
+    setConfigBash(): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            const pathBash = `${this.home}/.bashrc`
+            return resolve(true)
+        })
+    }
 }

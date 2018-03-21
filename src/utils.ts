@@ -14,3 +14,7 @@ export function ifStringFile(file: string, search: string): Promise<boolean> {
         }
     })
 }
+
+export function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
