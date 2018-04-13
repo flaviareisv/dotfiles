@@ -6,6 +6,10 @@ case "$TERM" in
     screen-256color) color_prompt=yes;;
 esac
 
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
 if [ "$color_prompt" = yes ]; then
     red="\[\033[0;31m\]"
     blue="\[\033[0;34m\]"
@@ -18,7 +22,8 @@ if [ "$color_prompt" = yes ]; then
     # export PS1="$gray[\$(date +'%Y-%m-%d %H:%M:%S')] $red\u$blue@\h$gray:$green\W \$$white "
     # export PS1="${debian_chroot:+($debian_chroot)}$red\u$blue@\h$blue:$green\w$green\$$white "
     # export PS1="${debian_chroot:+($debian_chroot)}$red\u$blueLight@\h$blue:$green\W$green\$$white "
-    export PS1="${debian_chroot:+($debian_chroot)}$cyan\u$cyan@\h$cyan:$yellow\W$yellow \$$white "
+    # export PS1="${debian_chroot:+($debian_chroot)}$cyan\u$cyan@\h$cyan:$yellow\W$yellow \$$white "
+    export PS1="${debian_chroot:+($debian_chroot)}$cyan\u$yellow:\W$green\$(parse_git_branch)$white \$ "
 else
     export PS1="${debian_chroot:+($debian_chroot)}\u@\h:\w\$ "
 fi
