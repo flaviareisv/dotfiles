@@ -21,6 +21,31 @@ install-git() {
 	fi
 }
 
+install-profile() {
+	local filebash isconfig fileconfig
+
+	echo "==> Setting profile"
+
+	filebash="$HOME/.bashrc"
+	fileconfig="$HOME/dotfiles/bashrc"
+
+	if [[ -f $filebash ]]; then
+		isconfig=$(grep -Fxq "$fileconfig")
+
+		printf "==> Inject profile config in file... "
+
+		if [[ $isconfig ]]; then
+			echo -e "${COLOR_ERROR}file profile config already exists.${NO_COLOR}"
+		else
+			echo ". $fileconfig" >> "$filebash"
+			message-success
+		fi
+	else
+		echo -e "${COLOR_ERROR}.bashrc not found${NO_COLOR}"
+		exit 1
+	fi
+}
+
 configure-git() {
 	local clone tmpdir copy
 
@@ -47,23 +72,24 @@ configure-git() {
 	fi
 }
 
-message-success () {
+message-success() {
 	echo -e "${COLOR_SUCCESS}OK${NO_COLOR}"
 }
 
-message-error () {
+message-error() {
 	echo -e "${COLOR_ERROR}ERROR${NO_COLOR}"
 	exit 1
 }
 
 main() {
-	echo -e "${COLOR_SUCCESS}START${NO_COLOR}"
+	echo "==> Start"
 	echo ""
 
 	install-git
+	install-profile
 
 	echo ""
-	echo -e "${COLOR_SUCCESS}END${NO_COLOR}"
+	echo "==> Finalized"
 	exit 0
 }
 
