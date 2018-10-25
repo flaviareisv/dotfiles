@@ -30,12 +30,12 @@ install-profile() {
 	fileconfig="$HOME/dotfiles/bashrc"
 
 	if [[ -f $filebash ]]; then
-		isconfig=$(grep -Fxq "$fileconfig")
-
 		printf "==> Inject profile config in file... "
 
+		isconfig=$(grep -c "$fileconfig" "$filebash")
+
 		if [[ $isconfig ]]; then
-			echo -e "${COLOR_ERROR}file profile config already exists.${NO_COLOR}"
+			echo -e "${COLOR_ERROR}config already exists.${NO_COLOR}"
 		else
 			echo ". $fileconfig" >> "$filebash"
 			message-success
@@ -72,6 +72,16 @@ configure-git() {
 	fi
 }
 
+init() {
+	echo "==> Start <=="
+	echo ""
+}
+
+end() {
+	echo ""
+	echo "==> Finalized <=="
+}
+
 message-success() {
 	echo -e "${COLOR_SUCCESS}OK${NO_COLOR}"
 }
@@ -82,15 +92,20 @@ message-error() {
 }
 
 main() {
-	echo "==> Start"
-	echo ""
+	init
 
-	install-git
-	install-profile
+	if [[ "$DISTRO" == "ubuntu" ]]; then
+		install-git
+		install-profile
 
-	echo ""
-	echo "==> Finalized"
-	exit 0
+		end
+		exit 0
+	else
+		echo -e "${COLOR_ERROR}SO not distribution .deb${NO_COLOR}"
+
+		end
+		exit 1
+	fi
 }
 
 main "$@"
